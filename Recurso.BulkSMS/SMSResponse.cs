@@ -1,50 +1,52 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ECMS.Common
 {
-    public class Submission
-    {
-        public string id { get; set; }
-        public DateTime date { get; set; }
-    }
-
-    public class Status
-    {
-        public string id { get; set; }
-        public string type { get; set; }
-        public string subtype { get; set; }
-    }
 
     public class SMSResponse
     {
-        public string id { get; set; } 
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string type { get; set; }
+        [JsonProperty("type")] 
+        public string Type { get; set; }
 
-        public string from { get; set; }
+        [JsonProperty("from")] 
+        public string From { get; set; }
 
-        public string to { get; set; }
+        [JsonProperty("to")] 
+        public string To { get; set; }
 
-        public object body { get; set; }
+        [JsonProperty("body")] 
+        public object Body { get; set; }
 
-        public string encoding { get; set; }
+        [JsonProperty("encoding")] 
+        public string Encoding { get; set; }
 
-        public int protocolId { get; set; }
+        [JsonProperty("protocolId")] 
+        public int ProtocolId { get; set; }
 
-        public int messageClass { get; set; }
+        [JsonProperty("messageClass")] 
+        public int MessageClass { get; set; }
 
-        public int numberOfParts { get; set; }
+        [JsonProperty("numberOfParts")] 
+        public int NumberOfParts { get; set; }
 
-        public int creditCost { get; set; }
+        [JsonProperty("creditCost")] 
+        public int CreditCost { get; set; }
 
-        public Submission submission { get; set; }
+        [JsonProperty("submission")] 
+        public Submission Submission { get; set; }
 
-        public Status status { get; set; }
+        [JsonProperty("status")] 
+        public Status Status { get; set; }
 
-        public string relatedSentMessageId { get; set; }
+        [JsonProperty("relatedSentMessageId")] 
+        public string RelatedSentMessageId { get; set; }
 
-        public string userSuppliedId { get; set; }
+        [JsonProperty("userSuppliedId")] 
+        public string UserSuppliedId { get; set; }
     }
 }

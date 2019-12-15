@@ -7,12 +7,16 @@ namespace ECMS.Common
 {
     public class SMSMessage
     {
-        public string to { get; set; }
+        [JsonProperty("to")]
+        public string To { get; set; }
 
-        public string body { get; set; }
+        [JsonProperty("body")] 
+        public string Body { get; set; }
 
-        public int longMessageMaxParts { get; set; }
+        [JsonProperty("longMessageMaxParts")] 
+        public int LongMessageMaxParts { get; set; }
 
-        public string deliveryReports { get; set; }
+        [JsonProperty("deliveryReports")] 
+        public string DeliveryReports { get; set; }
     }
 }

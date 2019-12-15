@@ -19,7 +19,7 @@ namespace ECMS.Common
 
         public string Password { get; set; }
 
-        public int ConcatMessagesLimit { get; set; } = 5;
+        public int LongMessageMaximumParts { get; set; } = 5;
 
         public BulkSMS(string username, string password)
         {
@@ -49,18 +49,15 @@ namespace ECMS.Common
                 RequestFormat = DataFormat.Json
             };
 
-            #region# Message body
-
             var body = new SMSMessage
             {
-                to = msisdn,
-                body = message,
-                deliveryReports = "ERRORS",
-                longMessageMaxParts = 5
+                To = msisdn,
+                Body = message,
+                DeliveryReports = "ERRORS",
+                LongMessageMaxParts = LongMessageMaximumParts
             };
 
             restRequest.AddJsonBody(body);
-            #endregion
 
             IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
 
