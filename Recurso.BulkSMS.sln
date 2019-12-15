@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS", "Recurso.BulkSMS\Recurso.BulkSMS.csproj", "{3A637F7C-1711-4E10-92A1-F634CBC7F519}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Sample", "Recurso.BulkSMS.Sample\Recurso.BulkSMS.Sample.csproj", "{3D3DA948-7978-442A-A256-4B648A3B157B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3A637F7C-1711-4E10-92A1-F634CBC7F519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A637F7C-1711-4E10-92A1-F634CBC7F519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A637F7C-1711-4E10-92A1-F634CBC7F519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3DA948-7978-442A-A256-4B648A3B157B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3DA948-7978-442A-A256-4B648A3B157B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3DA948-7978-442A-A256-4B648A3B157B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3DA948-7978-442A-A256-4B648A3B157B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

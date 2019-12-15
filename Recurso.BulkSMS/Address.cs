@@ -1,4 +1,4 @@
-﻿namespace ECMS.Common
+﻿namespace Recurso.BulkSMS
 {
     public class Address
     {

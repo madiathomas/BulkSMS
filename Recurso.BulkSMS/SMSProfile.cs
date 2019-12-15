@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace ECMS.Common
+namespace Recurso.BulkSMS
 {
     public class SMSProfile
     {

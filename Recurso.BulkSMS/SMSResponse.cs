@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ECMS.Common
+namespace Recurso.BulkSMS
 {
 
     public class SMSResponse
