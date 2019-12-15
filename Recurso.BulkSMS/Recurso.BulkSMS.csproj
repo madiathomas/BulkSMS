@@ -15,7 +15,7 @@
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>recurso 400 x 400.png</PackageIcon>
     <PackageIconUrl />
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
