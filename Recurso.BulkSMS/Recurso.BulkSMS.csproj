@@ -2,11 +2,35 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Description>.NET Standard library for sending SMS using Bulk SMS and for retrieving bulk SMS profile details like balance.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Company>Recurso IT</Company>
+    <Authors>Thomas Madia</Authors>
+    <Product>BulkSMS</Product>
+    <Copyright>https://licenses.nuget.org/MIT</Copyright>
+    <PackageProjectUrl>https://github.com/madiathomas/BulkSMS</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/madiathomas/BulkSMS</RepositoryUrl>
+    <PackageTags>Bulk SMS, Send SMS, Send Message</PackageTags>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <PackageIcon>recurso 400 x 400.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RestSharp" Version="106.6.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="recurso 400 x 400.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

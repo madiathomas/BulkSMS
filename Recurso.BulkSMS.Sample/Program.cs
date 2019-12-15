@@ -23,9 +23,6 @@ namespace Recurso.BulkSMS.Sample
             string cellNumber = "[Enter your number";
             string message = "This is a test message which was sent via Bulk SMS.";
             await bulkSMS.SendSMS(cellNumber, message);
-
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
         }
     }
 }
