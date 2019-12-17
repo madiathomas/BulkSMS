@@ -18,4 +18,6 @@ If you don't have an account with Bulk SMS yet, you can signup for it on Bulk SM
 
 This library will be extended in future to include other API calls currently not covered. These are the only API calls that I am making using Bulk SMS at the moment.
 
-Library also available for download on Nuget as Recurso.BulkSMS.
+Library also available as a Nuget package. 
+
+To install it, simply run this nuget command on **Install-Package Recurso.BulkSMS**.
