@@ -13,7 +13,7 @@ using RestSharp.Authenticators;
 
 namespace Recurso.BulkSMS
 {
-    public class BulkSMSer
+    public class BulkSMSer : IBulkSMSer
     {
         public string Username { get; set; }
 
