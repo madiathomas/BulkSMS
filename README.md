@@ -9,7 +9,7 @@ BulkSMS is an open source .NET Standard library for sending SMSes using Bulk SMS
 ```csharp
 var bulkSMSer = new BulkSMSer("username", "password");
 
-`bulkSMSer.SendSMS("Test message", "2701234567");
+bulkSMSer.SendSMS("Test message", "2701234567");
 ```
 
 #### To retrieve profile information, you simply make this call:
