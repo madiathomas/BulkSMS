@@ -4,20 +4,7 @@ BulkSMS is an open source .NET Standard library for sending SMSes using Bulk SMS
 
 ### How to use BulkSMS Library
 
-#### To send SMS, you first initialise a BulkSMSTextMessage object:
-
-```csharp
-var bulkSMSTextMessage = new BulkSMSTextMessage("username", "password");
-
-bulkSMSTextMessage.SendSMS("Test message", "2701234567");
-```
-
-#### To retrieve profile information, you simply make this call:
-
-```csharp
-var bulkSMSProfile = new BulkSMSProfile("username","password");
-bulkSMSProfile.GetProfile();
-```
+Please check sample on how to use the library
 
 ### Bulk SMS Account
 
