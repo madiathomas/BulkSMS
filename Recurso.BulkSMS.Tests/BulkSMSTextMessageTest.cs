@@ -35,6 +35,11 @@ namespace Recurso.BulkSMS.Tests
                     StatusId = "0",
                     StatusType = "ACCEPTED",
                     StatusSubtype = "SENT"
+                },
+                Submission = new Submission
+                {
+                    SubmissionDate = DateTime.Now,
+                    SubmissionId = "SubmissionId"
                 }
             };
 

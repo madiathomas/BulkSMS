@@ -26,6 +26,22 @@ namespace Recurso.BulkSMS.Tests
                 Id = "923467170000",
                 Username = "madiathomas",
                 DateCreated = DateTime.Now,
+                Commerce = new Commerce
+                {
+                    BankPaymentReference = "BankPaymentReference",
+                },
+                Company = new Company
+                {
+                    Name = "Company Name",
+                    TaxReference = "TaxReference"
+                },
+                OriginAddresses = new OriginAddresses
+                {
+                    Allowed = new System.Collections.Generic.List<object>
+                    {
+                        "Origin Address"
+                    }
+                },
                 Credits = new Credits
                 {
                     Balance = 1000,
