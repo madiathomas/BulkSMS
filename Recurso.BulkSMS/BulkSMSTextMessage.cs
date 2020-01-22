@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.IO;
-using System.Web;
-using System.Configuration;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Recurso.BulkSMS.Common;
+using Recurso.BulkSMS.Common.Interfaces;
 using RestSharp;
-using Newtonsoft.Json;
 using RestSharp.Authenticators;
+using System;
+using System.Threading.Tasks;
 
 namespace Recurso.BulkSMS
 {
-    public class BulkSMSer : IBulkSMSer
+    public class BulkSMSTextMessage : ITextMessage
     {
         public string Username { get; set; }
 
@@ -26,7 +21,7 @@ namespace Recurso.BulkSMS
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        public BulkSMSer(string username, string password)
+        public BulkSMSTextMessage(string username, string password)
         {
             Username = username;
             Password = password;

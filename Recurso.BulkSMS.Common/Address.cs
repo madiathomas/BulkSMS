@@ -1,4 +1,4 @@
-﻿namespace Recurso.BulkSMS
+﻿namespace Recurso.BulkSMS.Common
 {
     public class Address
     {

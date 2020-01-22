@@ -7,13 +7,13 @@ namespace Recurso.BulkSMS.Sample
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             // Bulk SMS username and password. To sign up and get free test credits, go to https://www.bulksms.com.
             string username = "[Your Bulk SMS Username]";
             string password = "[Your Bulk SMS Password]";
 
-            var bulkSMS = new BulkSMSer(username, password);
+            var bulkSMS = new BulkSMSTextMessage(username, password);
 
             // Get profile
             var profile = await bulkSMS.GetProfile();

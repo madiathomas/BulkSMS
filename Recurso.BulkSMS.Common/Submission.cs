@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Recurso.BulkSMS
+namespace Recurso.BulkSMS.Common
 {
     public class Submission
     {

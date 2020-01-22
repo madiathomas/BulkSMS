@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Recurso.BulkSMS
+namespace Recurso.BulkSMS.Common
 {
 
     public class SMSResponse

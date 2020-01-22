@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS", "Recurso.BulkSMS\Recurso.BulkSMS.csproj", "{3A637F7C-1711-4E10-92A1-F634CBC7F519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS", "Recurso.BulkSMS\Recurso.BulkSMS.csproj", "{3A637F7C-1711-4E10-92A1-F634CBC7F519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Sample", "Recurso.BulkSMS.Sample\Recurso.BulkSMS.Sample.csproj", "{3D3DA948-7978-442A-A256-4B648A3B157B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Sample", "Recurso.BulkSMS.Sample\Recurso.BulkSMS.Sample.csproj", "{3D3DA948-7978-442A-A256-4B648A3B157B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Common", "Recurso.BulkSMS.Common\Recurso.BulkSMS.Common.csproj", "{61C9F673-2386-4826-A39B-29544917656A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3D3DA948-7978-442A-A256-4B648A3B157B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3DA948-7978-442A-A256-4B648A3B157B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3DA948-7978-442A-A256-4B648A3B157B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C9F673-2386-4826-A39B-29544917656A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C9F673-2386-4826-A39B-29544917656A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C9F673-2386-4826-A39B-29544917656A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C9F673-2386-4826-A39B-29544917656A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
