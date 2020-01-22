@@ -38,6 +38,9 @@ namespace Recurso.BulkSMS
         /// <returns></returns>
         public async Task<SMSProfile> GetProfile()
         {
+            Username.CheckIfFieldIsMissing();
+            Password.CheckIfFieldIsMissing();
+
             _restClient.Authenticator = new HttpBasicAuthenticator(Username, Password);
 
             _restRequest.RequestFormat = DataFormat.Json;

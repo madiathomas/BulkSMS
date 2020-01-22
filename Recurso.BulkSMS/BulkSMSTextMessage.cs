@@ -3,7 +3,6 @@ using Recurso.BulkSMS.Common;
 using Recurso.BulkSMS.Common.Interfaces;
 using RestSharp;
 using RestSharp.Authenticators;
-using System;
 using System.Threading.Tasks;
 
 namespace Recurso.BulkSMS
@@ -45,16 +44,10 @@ namespace Recurso.BulkSMS
         /// <returns></returns>
         public async Task<SMSResponse> SendSMS(string phoneNumber, string message)
         {
-            // Don't send SMS if cell number or message is null, empty or whitespace
-            if (string.IsNullOrWhiteSpace(message))
-            {
-                throw new MissingFieldException("Message is required!");
-            }
-
-            if (string.IsNullOrWhiteSpace(phoneNumber))
-            {
-                throw new MissingFieldException("Phone number is required!");
-            }
+            Username.CheckIfFieldIsMissing();
+            Password.CheckIfFieldIsMissing();
+            phoneNumber.CheckIfFieldIsMissing();
+            message.CheckIfFieldIsMissing();
 
             _restClient.Authenticator = new HttpBasicAuthenticator(Username, Password);
 

@@ -12,12 +12,16 @@ namespace Recurso.BulkSMS.Tests
     [TestClass]
     public class BulkSMSProfileTest
     {
-        private SMSProfile smsProfile;
+        private Mock<IRestClient> restClientMock = new Mock<IRestClient>();
+        private Mock<IRestRequest> restRequestMock = new Mock<IRestRequest>();
+        private Mock<IRestResponse<SMSResponse>> restResponseMock = new Mock<IRestResponse<SMSResponse>>();
+
+        private BulkSMSProfile bulkSMSProfile;
 
         [TestInitialize]
         public void Setup()
         {
-            smsProfile = new SMSProfile
+            SMSProfile smsProfile = new SMSProfile
             {
                 Id = "923467170000",
                 Username = "madiathomas",
@@ -34,25 +38,26 @@ namespace Recurso.BulkSMS.Tests
                     Remaining = 10
                 }
             };
+
+            string json = JsonConvert.SerializeObject(smsProfile);
+
+            restResponseMock.Setup(_ => _.StatusCode).Returns(HttpStatusCode.OK);
+            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
+            restResponseMock.Setup(_ => _.Content).Returns(json);
+            restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
+
+            bulkSMSProfile = new BulkSMSProfile(restClientMock.Object, restRequestMock.Object)
+            {
+                Username = "Username",
+                Password = "Password"
+            };
         }
 
         [TestMethod]
         public async Task BulkSMSProfile_GetProfile_Successful()
         {
             // Arrange
-            string json = JsonConvert.SerializeObject(smsProfile);
-
-            var restClientMock = new Mock<IRestClient>();
-            var restRequestMock = new Mock<IRestRequest>();
-            var restResponseMock = new Mock<IRestResponse<SMSProfile>>();
-
-            restResponseMock.Setup(_ => _.StatusCode).Returns(HttpStatusCode.OK);
             restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
-            restResponseMock.Setup(_ => _.Content).Returns(json);
-
-            restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
-
-            var bulkSMSProfile = new BulkSMSProfile(restClientMock.Object, restRequestMock.Object);
 
             // Act
             var result = await bulkSMSProfile.GetProfile();
@@ -67,22 +72,42 @@ namespace Recurso.BulkSMS.Tests
         public async Task BulkSMSProfile_GetProfile_Failed()
         {
             // Arrange
-            string json = JsonConvert.SerializeObject(smsProfile);
-
-            var restClientMock = new Mock<IRestClient>();
-            var restRequestMock = new Mock<IRestRequest>();
-            var restResponseMock = new Mock<IRestResponse<SMSProfile>>();
-
-            restResponseMock.Setup(_ => _.StatusCode).Returns(HttpStatusCode.OK);
             restResponseMock.Setup(_ => _.IsSuccessful).Returns(false);
-            restResponseMock.Setup(_ => _.Content).Returns(json);
-
-            restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
-
-            var bulkSMSProfile = new BulkSMSProfile(restClientMock.Object, restRequestMock.Object);
 
             // Act
             var result = await bulkSMSProfile.GetProfile();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MissingFieldException))]
+        public async Task BulkSMSProfile_GetProfile_Test_Missing_Username()
+        {
+            // Arrange
+            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
+
+            bulkSMSProfile.Username = null;
+            bulkSMSProfile.Password = "Password";
+
+            // Act
+            await bulkSMSProfile.GetProfile();
+
+            // Assert
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MissingFieldException))]
+        public async Task BulkSMSProfile_GetProfile_Test_Missing_Password()
+        {
+            // Arrange
+            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
+
+            bulkSMSProfile.Username = "Username";
+            bulkSMSProfile.Password = null;
+
+            // Act
+            await bulkSMSProfile.GetProfile();
+
+            // Assert
         }
     }
 }
