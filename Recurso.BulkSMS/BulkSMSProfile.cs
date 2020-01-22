@@ -48,7 +48,7 @@ namespace Recurso.BulkSMS
 
             if (response.IsSuccessful == false)
             {
-                throw response.ErrorException;
+                throw new ProfileNotFoundException(response.ErrorException);
             }
 
             return JsonConvert.DeserializeObject<SMSProfile>(response.Content);

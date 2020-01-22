@@ -48,12 +48,12 @@ namespace Recurso.BulkSMS
             // Don't send SMS if cell number or message is null, empty or whitespace
             if (string.IsNullOrWhiteSpace(message))
             {
-                throw new FormatException("Message is required!");
+                throw new MissingFieldException("Message is required!");
             }
 
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
-                throw new FormatException("Phone number is required!");
+                throw new MissingFieldException("Phone number is required!");
             }
 
             _restClient.Authenticator = new HttpBasicAuthenticator(Username, Password);
@@ -76,7 +76,7 @@ namespace Recurso.BulkSMS
 
             if (response.IsSuccessful == false)
             {
-                throw response.ErrorException;
+                throw new SMSSendFailedException(response.ErrorException);
             }
 
             return JsonConvert.DeserializeObject<SMSResponse>(response.Content);

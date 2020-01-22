@@ -37,7 +37,7 @@ namespace Recurso.BulkSMS.Tests
         }
 
         [TestMethod]
-        public async Task BulkSMSProfile_GetProfile_Test()
+        public async Task BulkSMSProfile_GetProfile_Successful()
         {
             // Arrange
             string json = JsonConvert.SerializeObject(smsProfile);
@@ -49,6 +49,7 @@ namespace Recurso.BulkSMS.Tests
             restResponseMock.Setup(_ => _.StatusCode).Returns(HttpStatusCode.OK);
             restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
             restResponseMock.Setup(_ => _.Content).Returns(json);
+
             restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
 
             var bulkSMSProfile = new BulkSMSProfile(restClientMock.Object, restRequestMock.Object);
@@ -59,6 +60,29 @@ namespace Recurso.BulkSMS.Tests
             // Assert
             string actual = "923467170000";
             Assert.AreEqual(result.Id, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ProfileNotFoundException))]
+        public async Task BulkSMSProfile_GetProfile_Failed()
+        {
+            // Arrange
+            string json = JsonConvert.SerializeObject(smsProfile);
+
+            var restClientMock = new Mock<IRestClient>();
+            var restRequestMock = new Mock<IRestRequest>();
+            var restResponseMock = new Mock<IRestResponse<SMSProfile>>();
+
+            restResponseMock.Setup(_ => _.StatusCode).Returns(HttpStatusCode.OK);
+            restResponseMock.Setup(_ => _.IsSuccessful).Returns(false);
+            restResponseMock.Setup(_ => _.Content).Returns(json);
+
+            restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
+
+            var bulkSMSProfile = new BulkSMSProfile(restClientMock.Object, restRequestMock.Object);
+
+            // Act
+            var result = await bulkSMSProfile.GetProfile();
         }
     }
 }
