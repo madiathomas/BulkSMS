@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Recurso.BulkSMS.Common\Recurso.BulkSMS.Common.csproj" />
+    <ProjectReference Include="..\Recurso.BulkSMS.Sample.Common\Recurso.BulkSMS.Sample.Common.csproj" />
+    <ProjectReference Include="..\Recurso.BulkSMS\Recurso.BulkSMS.csproj" />
+  </ItemGroup>
+
+</Project>

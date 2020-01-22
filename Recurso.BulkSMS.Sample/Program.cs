@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading.Tasks;
+using Autofac;
 using Recurso.BulkSMS;
+using Recurso.BulkSMS.Common;
+using Recurso.BulkSMS.Sample.BLL;
+using Recurso.BulkSMS.Sample.Common.Interfaces;
+using RestSharp;
 
 namespace Recurso.BulkSMS.Sample
 {
@@ -9,20 +14,20 @@ namespace Recurso.BulkSMS.Sample
     {
         static async Task Main()
         {
-            // Bulk SMS username and password. To sign up and get free test credits, go to https://www.bulksms.com.
-            string username = "[Your Bulk SMS Username]";
-            string password = "[Your Bulk SMS Password]";
+            var container = ContainerConfiguration.Configure();
+            var businessLogic = container.Resolve<IBusinessLogic>();
 
-            var bulkSMS = new BulkSMSTextMessage(username, password);
+            var profile = await businessLogic.GetProfile();
 
-            // Get profile
-            var profile = await bulkSMS.GetProfile();
             Console.WriteLine($"Credit balance: {profile.Credits.Balance}");
 
             // Send SMS
-            string cellNumber = "[Enter your number";
+            string cellNumber = "[Enter Cell Number]"; // Phone number must be in international format e.g +2755520202020
             string message = "This is a test message which was sent via Bulk SMS.";
-            await bulkSMS.SendSMS(cellNumber, message);
+
+            SMSResponse response = await businessLogic.Send(cellNumber, message);
+
+            Console.WriteLine($"Send Message Status: {response.Status}");
         }
     }
 }

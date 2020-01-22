@@ -10,7 +10,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Recurso.BulkSMS.Sample.BLL\Recurso.BulkSMS.Sample.BLL.csproj" />
     <ProjectReference Include="..\Recurso.BulkSMS\Recurso.BulkSMS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

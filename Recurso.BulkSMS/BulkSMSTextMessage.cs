@@ -10,27 +10,37 @@ namespace Recurso.BulkSMS
 {
     public class BulkSMSTextMessage : ITextMessage
     {
+        /// <summary>
+        /// Your Bulk SMS user name. To sign up and get free test credits, go to https://www.bulksms.com.
+        /// </summary>
         public string Username { get; set; }
 
+        /// <summary>
+        /// Your Bulk SMS password. To sign up and get free test credits, go to https://www.bulksms.com.
+        /// </summary>
         public string Password { get; set; }
 
+        /// <summary>
+        /// Maximum number of concatenated SMSes when text is more than 140 chracters. Defaulted to 5 messages or 700 characters
+        /// </summary>
         public int LongMessageMaximumParts { get; set; } = 5;
 
+        private readonly IRestClient _restClient;
+        private readonly IRestRequest _restRequest;
+
         /// <summary>
-        /// Construtor . Accepts Bulk SMS username and password. To sign up and get free test credits, go to https://www.bulksms.com.
+        /// Construtor
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        public BulkSMSTextMessage(string username, string password)
+        public BulkSMSTextMessage(IRestClient restClient, IRestRequest restRequest)
         {
-            Username = username;
-            Password = password;
+            _restClient = restClient;
+            _restRequest = restRequest;
         }
 
         /// <summary>
         /// Used to Send SMS using Bulk SMS. Phone number must be in an international format.
         /// </summary>
-        /// <param name="phoneNumber"></param>
+        /// <param name="phoneNumber">Phone number must be in international format</param>
         /// <param name="message"></param>
         /// <returns></returns>
         public async Task<SMSResponse> SendSMS(string phoneNumber, string message)
@@ -46,29 +56,23 @@ namespace Recurso.BulkSMS
                 throw new FormatException("Phone number is required!");
             }
 
-            string url = "https://api.bulksms.com/v1/messages";
+            _restClient.Authenticator = new HttpBasicAuthenticator(Username, Password);
 
-            var restClient = new RestClient(url)
-            {
-                Authenticator = new HttpBasicAuthenticator(Username, Password)
-            };
-
-            var restRequest = new RestRequest(Method.POST)
-            {
-                RequestFormat = DataFormat.Json
-            };
+            _restRequest.Resource = "https://api.bulksms.com/v1/messages";
+            _restRequest.Method = Method.POST;
+            _restRequest.RequestFormat = DataFormat.Json;
 
             var jsonBody = JsonConvert.SerializeObject(new SMSMessage
             {
                 To = phoneNumber,
                 Body = message,
-                DeliveryReports = "ERRORS",
+                DeliveryReports = "NONE",
                 LongMessageMaxParts = LongMessageMaximumParts
             });
 
-            restRequest.AddJsonBody(jsonBody);
+            _restRequest.AddJsonBody(jsonBody);
 
-            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
+            IRestResponse response = await _restClient.ExecuteTaskAsync(_restRequest);
 
             if (response.IsSuccessful == false)
             {
@@ -76,34 +80,6 @@ namespace Recurso.BulkSMS
             }
 
             return JsonConvert.DeserializeObject<SMSResponse>(response.Content);
-        }
-
-        /// <summary>
-        /// Used to get profile information about your bulk sms account. You can use it to retrieve quotas and credits left.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<SMSProfile> GetProfile()
-        {
-            string url = "https://api.bulksms.com/v1/profile";
-
-            var restClient = new RestClient(url)
-            {
-                Authenticator = new HttpBasicAuthenticator(Username, Password)
-            };
-
-            var restRequest = new RestRequest(Method.GET)
-            {
-                RequestFormat = DataFormat.Json
-            };
-
-            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
-
-            if (response.IsSuccessful == false)
-            {
-                throw response.ErrorException;
-            }
-
-            return JsonConvert.DeserializeObject<SMSProfile>(response.Content);
         }
     }
 }
