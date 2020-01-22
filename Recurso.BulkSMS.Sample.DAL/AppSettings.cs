@@ -7,11 +7,17 @@ namespace Recurso.BulkSMS.Sample.DAL
 {
     public class AppSettings
     {
-        private static readonly IConfiguration configuration = new ConfigurationBuilder().SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                                               .AddJsonFile("appsettings.json")
-                                               .Build();
+        public static string Username { get; set; }
+        public static string Password { get; set; }
 
-        public static string Username = configuration["AppSettings:BulkSMSUsername"];
-        public static string Password = configuration["AppSettings:BulkSMSPassword"];
+        public AppSettings()
+        {
+            var configuration = new ConfigurationBuilder().SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                                   .AddJsonFile("appsettings.json")
+                                                   .Build();
+
+            Username = configuration["AppSettings:BulkSMSUsername"];
+            Password = configuration["AppSettings:BulkSMSPassword"];
+        }
     }
 }

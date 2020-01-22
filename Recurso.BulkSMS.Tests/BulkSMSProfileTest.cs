@@ -24,7 +24,7 @@ namespace Recurso.BulkSMS.Tests
             SMSProfile smsProfile = new SMSProfile
             {
                 Id = "923467170000",
-                Username = "madiathomas",
+                Username = "Username",
                 DateCreated = DateTime.Now,
                 Commerce = new Commerce
                 {

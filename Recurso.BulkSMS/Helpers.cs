@@ -4,7 +4,7 @@ namespace Recurso.BulkSMS
 {
     public static class Helpers
     {
-        internal static void CheckIfFieldIsMissing(this string field)
+        public static void CheckIfFieldIsMissing(this string field)
         {
             if (string.IsNullOrWhiteSpace(field))
             {

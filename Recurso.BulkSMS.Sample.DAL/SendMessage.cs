@@ -23,6 +23,9 @@ namespace Recurso.BulkSMS.Sample.DAL
 
         public async Task<SMSResponse> Send(string phoneNumber, string message)
         {
+            phoneNumber.CheckIfFieldIsMissing();
+            message.CheckIfFieldIsMissing();
+
             return await _textMessage.SendSMS(phoneNumber, message);
         }
     }
