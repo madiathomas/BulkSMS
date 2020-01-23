@@ -63,7 +63,6 @@ namespace Recurso.BulkSMS.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task BulkSMSProfile_GetProfile_Test_Missing_Username()
         {
             // Arrange
@@ -73,13 +72,13 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSProfile.Password = "Password";
 
             // Act
-            await bulkSMSProfile.GetProfile();
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSProfile.GetProfile());
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task BulkSMSProfile_GetProfile_Test_Missing_Password()
         {
             // Arrange
@@ -89,9 +88,10 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSProfile.Password = null;
 
             // Act
-            await bulkSMSProfile.GetProfile();
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSProfile.GetProfile());
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
     }
 }

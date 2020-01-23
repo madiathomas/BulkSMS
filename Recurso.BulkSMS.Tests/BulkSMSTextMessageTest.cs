@@ -71,7 +71,6 @@ namespace Recurso.BulkSMS.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task BulkSMSTextMessage_SendSMS_Test_Missing_Username()
         {
             // Arrange
@@ -81,13 +80,13 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Password = "Password";
 
             // Act
-            await bulkSMSTextMessage.SendSMS(phoneNumber, message);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(phoneNumber, message));
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task BulkSMSTextMessage_SendSMS_Test_Missing_Password()
         {
             // Arrange
@@ -97,13 +96,13 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Password = null;
 
             // Act
-            await bulkSMSTextMessage.SendSMS(phoneNumber, message);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(phoneNumber, message));
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task BulkSMSTextMessage_SendSMS_Test_Missing_PhoneNumber()
         {
             // Arrange
@@ -113,13 +112,13 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Password = "Password";
 
             // Act
-            await bulkSMSTextMessage.SendSMS(null, message);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(null, message));
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task BulkSMSTextMessage_SendSMS_Test_Missing_Message()
         {
             // Arrange
@@ -129,9 +128,10 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Password = "Password";
 
             // Act
-            await bulkSMSTextMessage.SendSMS(phoneNumber, null);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(phoneNumber, null));
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
     }
 }

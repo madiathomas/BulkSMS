@@ -2,6 +2,7 @@
 using Moq;
 using Recurso.BulkSMS.Common;
 using Recurso.BulkSMS.Sample.BLL;
+using Recurso.BulkSMS.Sample.Common.Interfaces;
 using Recurso.BulkSMS.Sample.DAL;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ namespace Recurso.BulkSMS.Sample.Tests
     [TestClass]
     public class BusinessLogicTest
     {
-        Mock<AccountProfile> accountProfileMock = new Mock<AccountProfile>();
-        Mock<SendMessage> sendMessageMock = new Mock<SendMessage>();
+        Mock<IAccountProfile> accountProfileMock = new Mock<IAccountProfile>();
+        Mock<ISendMessage> sendMessageMock = new Mock<ISendMessage>();
 
         private readonly string phoneNumber = "+27731234567";
         private readonly string message = "This is a test SMS message";
@@ -45,27 +46,10 @@ namespace Recurso.BulkSMS.Sample.Tests
         }
 
         [TestMethod]
-        public async Task BusinessLogic_GetProfile_Failed()
-        {
-            // Arrange
-            smsProfile = null;
-
-            accountProfileMock.Setup(_ => _.GetProfile()).ReturnsAsync(smsProfile);
-
-            var businessLogic = new BusinessLogic(accountProfileMock.Object, sendMessageMock.Object);
-
-            // Act
-            SMSProfile result = await businessLogic.GetProfile();
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
         public async Task BusinessLogic_Send_Success()
         {
             // Arrange
-            accountProfileMock.Setup(_ => _.GetProfile()).ReturnsAsync(smsProfile);
+            sendMessageMock.Setup(_ => _.Send(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(smsResponse);
 
             var businessLogic = new BusinessLogic(accountProfileMock.Object, sendMessageMock.Object);
 
@@ -77,48 +61,33 @@ namespace Recurso.BulkSMS.Sample.Tests
         }
 
         [TestMethod]
-        public async Task BusinessLogic_Send_Failed()
-        {
-            // Arrange
-            accountProfileMock.Setup(_ => _.GetProfile()).ReturnsAsync(smsProfile);
-
-            var businessLogic = new BusinessLogic(accountProfileMock.Object, sendMessageMock.Object);
-
-            // Act
-            SMSResponse result = await businessLogic.Send(phoneNumber, message);
-
-            // Assert
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(MissingMemberException))]
         public async Task BusinessLogic_Send_Missing_PhoneNumber()
         {
             // Arrange
-            accountProfileMock.Setup(_ => _.GetProfile()).ReturnsAsync(smsProfile);
+            sendMessageMock.Setup(_ => _.Send(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(smsResponse);
 
             var businessLogic = new BusinessLogic(accountProfileMock.Object, sendMessageMock.Object);
 
             // Act
-            SMSResponse result = await businessLogic.Send(null, message);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async ()=> await businessLogic.Send(null, message));
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingMemberException))]
         public async Task BusinessLogic_Send_Missing_Message()
         {
             // Arrange
-            accountProfileMock.Setup(_ => _.GetProfile()).ReturnsAsync(smsProfile);
+            sendMessageMock.Setup(_ => _.Send(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(smsResponse);
 
             var businessLogic = new BusinessLogic(accountProfileMock.Object, sendMessageMock.Object);
 
             // Act
-            SMSResponse result = await businessLogic.Send(phoneNumber, null);
+            var result = await  Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await businessLogic.Send(phoneNumber, null));
 
             // Assert
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
     }
 }

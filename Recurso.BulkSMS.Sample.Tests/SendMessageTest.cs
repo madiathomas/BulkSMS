@@ -53,31 +53,29 @@ namespace Recurso.BulkSMS.Sample.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task SendMessage_Send_Missing_PhoneNumber()
         {
             // Arrange
             var sendMessage = new SendMessage(textMessageMock.Object);
 
             // Act
-            SMSResponse response = await sendMessage.Send(null, message);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async ()=> await sendMessage.Send(null, message));
 
             // Assert
-            Assert.IsNotNull(response);
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MissingFieldException))]
         public async Task SendMessage_Send_Missing_Message()
         {
             // Arrange
             var sendMessage = new SendMessage(textMessageMock.Object);
 
             // Act
-            SMSResponse response = await sendMessage.Send(phoneNumber, null);
+            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await sendMessage.Send(phoneNumber, null));
 
             // Assert
-            Assert.IsNotNull(response);
+            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
         }
     }
 }
