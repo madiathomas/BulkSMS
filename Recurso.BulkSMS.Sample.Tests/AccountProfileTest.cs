@@ -13,10 +13,10 @@ namespace Recurso.BulkSMS.Sample.Tests
     [TestClass]
     public class AccountProfileTest
     {
-        readonly Mock<SMSProfile> smsProfileMock = new Mock<SMSProfile>();
         readonly Mock<IProfile> profileMock = new Mock<IProfile>();
 
         private SMSProfile smsProfile;
+
         [TestInitialize]
         public void Setup() {
             smsProfile = TestHelpers.GetSMSProfile();
