@@ -15,19 +15,12 @@ namespace Recurso.BulkSMS.Sample
         static async Task Main()
         {
             var container = ContainerConfiguration.Configure();
-            var businessLogic = container.Resolve<IBusinessLogic>();
 
-            var profile = await businessLogic.GetProfile();
-
-            Console.WriteLine($"Credit balance: {profile.Credits.Balance}");
-
-            // Send SMS
-            string cellNumber = "[Enter Cell Number]"; // Phone number must be in international format e.g +2755520202020
-            string message = "This is a test message which was sent via Bulk SMS.";
-
-            SMSResponse response = await businessLogic.Send(cellNumber, message);
-
-            Console.WriteLine($"Send Message Status: {response.Status}");
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var app = scope.Resolve<IApplication>();
+                await app.Run();
+            }
         }
     }
 }

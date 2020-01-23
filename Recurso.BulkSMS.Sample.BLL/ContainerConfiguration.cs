@@ -21,6 +21,7 @@ namespace Recurso.BulkSMS.Sample.BLL
             builder.RegisterType<BulkSMSTextMessage>().PropertiesAutowired().As<ITextMessage>();
             builder.RegisterType<SendMessage>().As<ISendMessage>();
             builder.RegisterType<BusinessLogic>().As<IBusinessLogic>();
+            builder.RegisterType<Application>().As<IApplication>();
 
             return builder.Build();
         }
