@@ -25,23 +25,7 @@ namespace Recurso.BulkSMS.Tests
         [TestInitialize]
         public void Setup()
         {
-            smsResponse = new SMSResponse
-            {
-                To = phoneNumber,
-                Body = message,
-                CreditCost = 1,
-                Status = new Status
-                {
-                    StatusId = "0",
-                    StatusType = "ACCEPTED",
-                    StatusSubtype = "SENT"
-                },
-                Submission = new Submission
-                {
-                    SubmissionDate = DateTime.Now,
-                    SubmissionId = "SubmissionId"
-                }
-            };
+            smsResponse = TestHelpers.GetSMSResponse(phoneNumber,message);
 
             json = JsonConvert.SerializeObject(smsResponse);
 

@@ -19,39 +19,7 @@ namespace Recurso.BulkSMS.Sample.Tests
         private SMSProfile smsProfile;
         [TestInitialize]
         public void Setup() {
-            smsProfile = new SMSProfile
-            {
-                Id = "923467170000",
-                Username = "Username",
-                DateCreated = DateTime.Now,
-                Commerce = new Commerce
-                {
-                    BankPaymentReference = "BankPaymentReference",
-                },
-                Company = new Company
-                {
-                    Name = "Company Name",
-                    TaxReference = "TaxReference"
-                },
-                OriginAddresses = new OriginAddresses
-                {
-                    Allowed = new System.Collections.Generic.List<object>
-                    {
-                        "Origin Address"
-                    }
-                },
-                Credits = new Credits
-                {
-                    Balance = 1000,
-                    Limit = 100,
-                    IsTransferAllowed = true
-                },
-                Quota = new Quota
-                {
-                    Size = 100,
-                    Remaining = 10
-                }
-            };
+            smsProfile = TestHelpers.GetSMSProfile();
         }
 
         [TestMethod]

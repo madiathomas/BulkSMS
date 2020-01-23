@@ -12,21 +12,22 @@ namespace Recurso.BulkSMS.Sample.Tests
     public class SendMessageTest
     {
         readonly Mock<ITextMessage> textMessageMock = new Mock<ITextMessage>();
-        readonly Mock<SMSResponse> smsResponseMock = new Mock<SMSResponse>();
+        private SMSResponse smsResponse;
 
-        private string phoneNumber = "01234567890";
-        private string message = "This is a test message";
+        private readonly string phoneNumber = "01234567890";
+        private readonly string message = "This is a test message";
 
+        [TestInitialize]
         public void Setup()
         {
-            
+            smsResponse = TestHelpers.GetSMSResponse(phoneNumber, message);
         }
 
         [TestMethod]
         public async Task SendMessage_Send_Success()
         {
             // Arrange
-            textMessageMock.Setup(_ => _.SendSMS(phoneNumber, message)).ReturnsAsync(smsResponseMock.Object);
+            textMessageMock.Setup(_ => _.SendSMS(phoneNumber, message)).ReturnsAsync(smsResponse);
 
             var sendMessage = new SendMessage(textMessageMock.Object);
 
