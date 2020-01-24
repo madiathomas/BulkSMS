@@ -11,14 +11,16 @@ namespace Recurso.BulkSMS.Sample.DAL
     public class SendMessage : ISendMessage
     {
         readonly ITextMessage _textMessage;
+        readonly IAppSettings _appSettings;
 
-        public SendMessage(ITextMessage textMessage)
+        public SendMessage(ITextMessage textMessage, IAppSettings appSettings)
         {
             _textMessage = textMessage;
+            _appSettings = appSettings;
 
             // Bulk SMS username and password. To sign up and get free test credits, go to https://www.bulksms.com.
-            _textMessage.Username = AppSettings.Username;
-            _textMessage.Password = AppSettings.Password;
+            _textMessage.Username = _appSettings.GetSetting("BulkSMSUsername");
+            _textMessage.Password = _appSettings.GetSetting("BulkSMSPassword");
         }
 
         public async Task<SMSResponse> Send(string phoneNumber, string message)

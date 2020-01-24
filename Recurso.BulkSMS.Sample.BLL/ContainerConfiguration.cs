@@ -18,6 +18,8 @@ namespace Recurso.BulkSMS.Sample.BLL
             builder.RegisterType<BulkSMSProfile>().PropertiesAutowired().As<IProfile>();
             builder.RegisterType<AccountProfile>().As<IAccountProfile>();
 
+            builder.RegisterType<AppSettings>().As<IAppSettings>();
+            
             builder.RegisterType<BulkSMSTextMessage>().PropertiesAutowired().As<ITextMessage>();
             builder.RegisterType<SendMessage>().As<ISendMessage>();
             builder.RegisterType<BusinessLogic>().As<IBusinessLogic>();

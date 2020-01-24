@@ -1,23 +1,26 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Recurso.BulkSMS.Sample.Common.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace Recurso.BulkSMS.Sample.DAL
 {
-    public class AppSettings
+    public class AppSettings : IAppSettings
     {
-        public static string Username { get; set; }
-        public static string Password { get; set; }
+        private readonly string directory = System.IO.Directory.GetCurrentDirectory();
+        private readonly string jsonFileName = "appsettings.json";
 
-        public AppSettings()
+        public string GetSetting(string settingName)
         {
-            var configuration = new ConfigurationBuilder().SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                                                   .AddJsonFile("appsettings.json")
-                                                   .Build();
-
-            Username = configuration["AppSettings:BulkSMSUsername"];
-            Password = configuration["AppSettings:BulkSMSPassword"];
+            try
+            {
+                var configurationRoot = new ConfigurationBuilder().SetBasePath(directory).AddJsonFile(jsonFileName).Build();
+                return configurationRoot[$"AppSettings:{settingName}"];
+            }
+            catch (FileNotFoundException)
+            {
+                throw;
+            }
         }
     }
 }

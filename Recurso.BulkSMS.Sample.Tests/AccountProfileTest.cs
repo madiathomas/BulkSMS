@@ -2,6 +2,7 @@
 using Moq;
 using Recurso.BulkSMS.Common;
 using Recurso.BulkSMS.Common.Interfaces;
+using Recurso.BulkSMS.Sample.Common.Interfaces;
 using Recurso.BulkSMS.Sample.DAL;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Recurso.BulkSMS.Sample.Tests
     public class AccountProfileTest
     {
         readonly Mock<IProfile> profileMock = new Mock<IProfile>();
+        readonly Mock<IAppSettings> appSettingsMock = new Mock<IAppSettings>();
 
         private SMSProfile smsProfile;
 
@@ -28,7 +30,7 @@ namespace Recurso.BulkSMS.Sample.Tests
             // Arrange
             profileMock.Setup(_ => _.GetProfile()).ReturnsAsync(smsProfile);
 
-            var accountProfile = new AccountProfile(profileMock.Object);
+            var accountProfile = new AccountProfile(profileMock.Object, appSettingsMock.Object);
 
             // Act
             SMSProfile profile = await accountProfile.GetProfile();
@@ -41,7 +43,7 @@ namespace Recurso.BulkSMS.Sample.Tests
         public async Task AccountProfile_GetProfile_Failed()
         {
             // Arrange
-            var accountProfile = new AccountProfile(profileMock.Object);
+            var accountProfile = new AccountProfile(profileMock.Object, appSettingsMock.Object);
 
             // Act
             SMSProfile profile = await accountProfile.GetProfile();
