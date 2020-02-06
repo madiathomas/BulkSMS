@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Recurso.BulkSMS.Common.Interfaces;
+
 using Recurso.BulkSMS.Sample.Common.Interfaces;
 using Recurso.BulkSMS.Sample.DAL;
 using RestSharp;
@@ -11,9 +11,6 @@ namespace Recurso.BulkSMS.Sample.BLL
         public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
-
-            builder.RegisterType<RestClient>().As<IRestClient>();
-            builder.RegisterType<RestRequest>().As<IRestRequest>();
 
             builder.RegisterType<BulkSMSProfile>().PropertiesAutowired().As<IProfile>();
             builder.RegisterType<AccountProfile>().As<IAccountProfile>();

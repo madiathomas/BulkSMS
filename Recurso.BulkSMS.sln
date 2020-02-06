@@ -7,19 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS", "Recurso.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Sample", "Recurso.BulkSMS.Sample\Recurso.BulkSMS.Sample.csproj", "{3D3DA948-7978-442A-A256-4B648A3B157B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Common", "Recurso.BulkSMS.Common\Recurso.BulkSMS.Common.csproj", "{61C9F673-2386-4826-A39B-29544917656A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{6B0BAAE6-229F-45F4-9B2F-767EE1403B4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Sample.DAL", "Recurso.BulkSMS.Sample.DAL\Recurso.BulkSMS.Sample.DAL.csproj", "{2A53E3C1-C539-498C-8C68-D14F3180DF37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Sample.DAL", "Recurso.BulkSMS.Sample.DAL\Recurso.BulkSMS.Sample.DAL.csproj", "{2A53E3C1-C539-498C-8C68-D14F3180DF37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Sample.BLL", "Recurso.BulkSMS.Sample.BLL\Recurso.BulkSMS.Sample.BLL.csproj", "{8C1F3176-93BC-46B9-8216-961B66EF8776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Sample.BLL", "Recurso.BulkSMS.Sample.BLL\Recurso.BulkSMS.Sample.BLL.csproj", "{8C1F3176-93BC-46B9-8216-961B66EF8776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Sample.Common", "Recurso.BulkSMS.Sample.Common\Recurso.BulkSMS.Sample.Common.csproj", "{17D2019B-CF1F-4F40-BE61-E7D543B1ECE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Sample.Common", "Recurso.BulkSMS.Sample.Common\Recurso.BulkSMS.Sample.Common.csproj", "{17D2019B-CF1F-4F40-BE61-E7D543B1ECE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Sample.Tests", "Recurso.BulkSMS.Sample.Tests\Recurso.BulkSMS.Sample.Tests.csproj", "{91F3E2BF-55AA-4871-AA9C-CD364255F6F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Sample.Tests", "Recurso.BulkSMS.Sample.Tests\Recurso.BulkSMS.Sample.Tests.csproj", "{91F3E2BF-55AA-4871-AA9C-CD364255F6F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recurso.BulkSMS.Tests", "Recurso.BulkSMS.Tests\Recurso.BulkSMS.Tests.csproj", "{18122C9F-4CAC-48C5-9BF8-D79E87D2CB77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recurso.BulkSMS.Tests", "Recurso.BulkSMS.Tests\Recurso.BulkSMS.Tests.csproj", "{18122C9F-4CAC-48C5-9BF8-D79E87D2CB77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{3D3DA948-7978-442A-A256-4B648A3B157B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3DA948-7978-442A-A256-4B648A3B157B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3DA948-7978-442A-A256-4B648A3B157B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61C9F673-2386-4826-A39B-29544917656A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61C9F673-2386-4826-A39B-29544917656A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61C9F673-2386-4826-A39B-29544917656A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61C9F673-2386-4826-A39B-29544917656A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A53E3C1-C539-498C-8C68-D14F3180DF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A53E3C1-C539-498C-8C68-D14F3180DF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A53E3C1-C539-498C-8C68-D14F3180DF37}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Recurso.BulkSMS.Common.Interfaces
+namespace Recurso.BulkSMS
 {
     public interface IProfile
     {

@@ -1,5 +1,5 @@
-﻿using Recurso.BulkSMS.Common;
-using Recurso.BulkSMS.Common.Interfaces;
+﻿using Recurso.BulkSMS;
+
 using Recurso.BulkSMS.Sample.Common.Interfaces;
 using System;
 using System.Collections.Generic;

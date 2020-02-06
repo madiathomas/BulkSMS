@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
-using Recurso.BulkSMS.Common;
+using Recurso.BulkSMS;
 using RestSharp;
 using System;
 using System.Net;
@@ -12,9 +12,8 @@ namespace Recurso.BulkSMS.Tests
     [TestClass]
     public class BulkSMSProfileTest
     {
-        private Mock<IRestClient> restClientMock = new Mock<IRestClient>();
-        private Mock<IRestRequest> restRequestMock = new Mock<IRestRequest>();
-        private Mock<IRestResponse<SMSResponse>> restResponseMock = new Mock<IRestResponse<SMSResponse>>();
+        private readonly Mock<IRestClient> restClientMock = new Mock<IRestClient>();
+        private readonly Mock<IRestResponse<SMSResponse>> restResponseMock = new Mock<IRestResponse<SMSResponse>>();
 
         private BulkSMSProfile bulkSMSProfile;
 
@@ -30,11 +29,7 @@ namespace Recurso.BulkSMS.Tests
             restResponseMock.Setup(_ => _.Content).Returns(json);
             restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
 
-            bulkSMSProfile = new BulkSMSProfile(restClientMock.Object, restRequestMock.Object)
-            {
-                Username = "Username",
-                Password = "Password"
-            };
+            bulkSMSProfile = new BulkSMSProfile("Username", "Password");
         }
 
         [TestMethod]

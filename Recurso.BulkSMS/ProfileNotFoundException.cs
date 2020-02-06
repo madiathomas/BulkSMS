@@ -6,7 +6,7 @@ namespace Recurso.BulkSMS
     [Serializable]
     public class ProfileNotFoundException : Exception
     {
-        private Exception errorException;
+        private readonly Exception errorException;
 
         public ProfileNotFoundException()
         {
@@ -28,5 +28,7 @@ namespace Recurso.BulkSMS
         protected ProfileNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
+
+        public Exception ErrorException => errorException;
     }
 }

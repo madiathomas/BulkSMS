@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Recurso.BulkSMS.Common;
-using Recurso.BulkSMS.Common.Interfaces;
+using Recurso.BulkSMS;
+
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
@@ -20,16 +20,13 @@ namespace Recurso.BulkSMS
         /// </summary>
         public string Password { get; set; }
 
-        private readonly IRestClient _restClient;
-        private readonly IRestRequest _restRequest;
-
         /// <summary>
         /// Construtor 
         /// </summary>
-        public BulkSMSProfile(IRestClient restClient, IRestRequest restRequest)
+        public BulkSMSProfile(string username, string password)
         {
-            _restClient = restClient;
-            _restRequest = restRequest;
+            Username = username;
+            Password = password;
         }
 
         /// <summary>
@@ -41,13 +38,19 @@ namespace Recurso.BulkSMS
             Username.CheckIfFieldIsMissing();
             Password.CheckIfFieldIsMissing();
 
-            _restClient.Authenticator = new HttpBasicAuthenticator(Username, Password);
+            var restClient = new RestClient
+            {
+                Authenticator = new HttpBasicAuthenticator(Username, Password)
+            };
 
-            _restRequest.RequestFormat = DataFormat.Json;
-            _restRequest.Method = Method.GET;
-            _restRequest.Resource = "https://api.bulksms.com/v1/profile";
+            var restRequest = new RestRequest
+            {
+                Resource = "https://api.bulksms.com/v1/profile",
+                Method = Method.GET,
+                RequestFormat = DataFormat.Json
+            };
 
-            IRestResponse response = await _restClient.ExecuteTaskAsync(_restRequest);
+            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
 
             if (response.IsSuccessful == false)
             {

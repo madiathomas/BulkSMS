@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Recurso.BulkSMS.Common\Recurso.BulkSMS.Common.csproj" />
+    <ProjectReference Include="..\Recurso.BulkSMS\Recurso.BulkSMS.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Recurso.BulkSMS.Common
+namespace Recurso.BulkSMS
 {
     public class OriginAddresses
     {

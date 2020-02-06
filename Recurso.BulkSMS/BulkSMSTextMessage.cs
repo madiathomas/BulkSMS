@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Recurso.BulkSMS.Common;
-using Recurso.BulkSMS.Common.Interfaces;
+using Recurso.BulkSMS;
+
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Threading.Tasks;
@@ -24,16 +24,13 @@ namespace Recurso.BulkSMS
         /// </summary>
         public int LongMessageMaximumParts { get; set; } = 5;
 
-        private readonly IRestClient _restClient;
-        private readonly IRestRequest _restRequest;
-
         /// <summary>
         /// Construtor
         /// </summary>
-        public BulkSMSTextMessage(IRestClient restClient, IRestRequest restRequest)
+        public BulkSMSTextMessage(string username, string password)
         {
-            _restClient = restClient;
-            _restRequest = restRequest;
+            Username = username;
+            Password = password;
         }
 
         /// <summary>
@@ -49,11 +46,17 @@ namespace Recurso.BulkSMS
             phoneNumber.CheckIfFieldIsMissing();
             message.CheckIfFieldIsMissing();
 
-            _restClient.Authenticator = new HttpBasicAuthenticator(Username, Password);
+            var restClient = new RestClient
+            {
+                Authenticator = new HttpBasicAuthenticator(Username, Password)
+            };
 
-            _restRequest.Resource = "https://api.bulksms.com/v1/messages";
-            _restRequest.Method = Method.POST;
-            _restRequest.RequestFormat = DataFormat.Json;
+            var restRequest = new RestRequest
+            {
+                Resource = "https://api.bulksms.com/v1/messages",
+                Method = Method.POST,
+                RequestFormat = DataFormat.Json
+            };
 
             var jsonBody = JsonConvert.SerializeObject(new SMSMessage
             {
@@ -63,9 +66,9 @@ namespace Recurso.BulkSMS
                 LongMessageMaxParts = LongMessageMaximumParts
             });
 
-            _restRequest.AddJsonBody(jsonBody);
+            restRequest.AddJsonBody(jsonBody);
 
-            IRestResponse response = await _restClient.ExecuteTaskAsync(_restRequest);
+            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
 
             if (response.IsSuccessful == false)
             {

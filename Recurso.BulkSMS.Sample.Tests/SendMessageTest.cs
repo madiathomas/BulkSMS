@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Recurso.BulkSMS.Common;
-using Recurso.BulkSMS.Common.Interfaces;
+using Recurso.BulkSMS;
+
 using Recurso.BulkSMS.Sample.Common.Interfaces;
 using Recurso.BulkSMS.Sample.DAL;
 using System;

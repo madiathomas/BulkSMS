@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Recurso.BulkSMS.Common\Recurso.BulkSMS.Common.csproj" />
     <ProjectReference Include="..\Recurso.BulkSMS.Sample.Common\Recurso.BulkSMS.Sample.Common.csproj" />
     <ProjectReference Include="..\Recurso.BulkSMS\Recurso.BulkSMS.csproj" />
   </ItemGroup>

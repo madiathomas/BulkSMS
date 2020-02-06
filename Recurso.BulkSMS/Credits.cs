@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Recurso.BulkSMS.Common
+namespace Recurso.BulkSMS
 {
     public class Credits
     {

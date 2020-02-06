@@ -1,4 +1,4 @@
-﻿using Recurso.BulkSMS.Common;
+﻿using Recurso.BulkSMS;
 using System;
 using System.Collections.Generic;
 using System.Text;

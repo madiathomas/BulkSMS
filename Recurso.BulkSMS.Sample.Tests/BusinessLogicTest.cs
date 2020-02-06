@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Recurso.BulkSMS.Common;
+using Recurso.BulkSMS;
 using Recurso.BulkSMS.Sample.BLL;
 using Recurso.BulkSMS.Sample.Common.Interfaces;
 using Recurso.BulkSMS.Sample.DAL;
@@ -14,8 +14,8 @@ namespace Recurso.BulkSMS.Sample.Tests
     [TestClass]
     public class BusinessLogicTest
     {
-        Mock<IAccountProfile> accountProfileMock = new Mock<IAccountProfile>();
-        Mock<ISendMessage> sendMessageMock = new Mock<ISendMessage>();
+        readonly Mock<IAccountProfile> accountProfileMock = new Mock<IAccountProfile>();
+        readonly Mock<ISendMessage> sendMessageMock = new Mock<ISendMessage>();
 
         private readonly string phoneNumber = "+27731234567";
         private readonly string message = "This is a test SMS message";

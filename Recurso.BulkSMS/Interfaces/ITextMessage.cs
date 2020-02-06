@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Recurso.BulkSMS.Common.Interfaces
+namespace Recurso.BulkSMS
 {
     public interface ITextMessage
     {
