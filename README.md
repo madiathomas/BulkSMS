@@ -16,4 +16,4 @@ This library will be extended in future to include other API calls currently not
 
 Library also available as a Nuget package. 
 
-To install it, simply run this nuget command on **Install-Package Recurso.BulkSMS**.
+To install it, simply run this command **Install-Package Recurso.BulkSMS** using Packager Manage Console.
