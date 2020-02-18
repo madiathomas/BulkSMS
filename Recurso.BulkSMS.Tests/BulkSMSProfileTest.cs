@@ -12,9 +12,6 @@ namespace Recurso.BulkSMS.Tests
     [TestClass]
     public class BulkSMSProfileTest
     {
-        private readonly Mock<IRestClient> restClientMock = new Mock<IRestClient>();
-        private readonly Mock<IRestResponse<SMSResponse>> restResponseMock = new Mock<IRestResponse<SMSResponse>>();
-
         private BulkSMSProfile bulkSMSProfile;
 
         [TestInitialize]
@@ -24,36 +21,13 @@ namespace Recurso.BulkSMS.Tests
 
             string json = JsonConvert.SerializeObject(smsProfile);
 
-            restResponseMock.Setup(_ => _.StatusCode).Returns(HttpStatusCode.OK);
-            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
-            restResponseMock.Setup(_ => _.Content).Returns(json);
-            restClientMock.Setup(x => x.ExecuteTaskAsync(It.IsAny<IRestRequest>())).ReturnsAsync(restResponseMock.Object);
-
             bulkSMSProfile = new BulkSMSProfile("Username", "Password");
-        }
-
-        [TestMethod]
-        public async Task BulkSMSProfile_GetProfile_Successful()
-        {
-            // Arrange
-            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
-
-            // Act
-            var result = await bulkSMSProfile.GetProfile();
-
-            // Assert
-            string actual = "923467170000";
-            Assert.AreEqual(result.Id, actual);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ProfileNotFoundException))]
         public async Task BulkSMSProfile_GetProfile_Failed()
         {
-            // Arrange
-            restResponseMock.Setup(_ => _.IsSuccessful).Returns(false);
-
-            // Act
             var result = await bulkSMSProfile.GetProfile();
         }
 
@@ -61,8 +35,6 @@ namespace Recurso.BulkSMS.Tests
         public async Task BulkSMSProfile_GetProfile_Test_Missing_Username()
         {
             // Arrange
-            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
-
             bulkSMSProfile.Username = null;
             bulkSMSProfile.Password = "Password";
 
@@ -77,8 +49,6 @@ namespace Recurso.BulkSMS.Tests
         public async Task BulkSMSProfile_GetProfile_Test_Missing_Password()
         {
             // Arrange
-            restResponseMock.Setup(_ => _.IsSuccessful).Returns(true);
-
             bulkSMSProfile.Username = "Username";
             bulkSMSProfile.Password = null;
 
