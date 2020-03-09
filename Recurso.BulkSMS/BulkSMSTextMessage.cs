@@ -68,7 +68,7 @@ namespace Recurso.BulkSMS
 
             restRequest.AddJsonBody(jsonBody);
 
-            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
+            IRestResponse response = await restClient.ExecuteAsync(restRequest);
 
             if (response.IsSuccessful == false)
             {

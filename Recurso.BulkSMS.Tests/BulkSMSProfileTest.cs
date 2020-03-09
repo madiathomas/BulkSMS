@@ -17,10 +17,6 @@ namespace Recurso.BulkSMS.Tests
         [TestInitialize]
         public void Setup()
         {
-            SMSProfile smsProfile = TestHelpers.GetSMSProfile();
-
-            string json = JsonConvert.SerializeObject(smsProfile);
-
             bulkSMSProfile = new BulkSMSProfile("Username", "Password");
         }
 
@@ -28,7 +24,7 @@ namespace Recurso.BulkSMS.Tests
         [ExpectedException(typeof(ProfileNotFoundException))]
         public async Task BulkSMSProfile_GetProfile_Failed()
         {
-            var result = await bulkSMSProfile.GetProfile();
+            await bulkSMSProfile.GetProfile();
         }
 
         [TestMethod]

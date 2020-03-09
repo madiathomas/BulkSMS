@@ -14,18 +14,12 @@ namespace Recurso.BulkSMS.Tests
     {
         private readonly string phoneNumber = "+27731234567";
         private readonly string message = "This is a test SMS message";
-        private SMSResponse smsResponse;
-        private string json;
 
         private BulkSMSTextMessage bulkSMSTextMessage;
 
         [TestInitialize]
         public void Setup()
         {
-            smsResponse = TestHelpers.GetSMSResponse(phoneNumber,message);
-
-            json = JsonConvert.SerializeObject(smsResponse);
-
             bulkSMSTextMessage = new BulkSMSTextMessage("Username", "Password");
         }
 

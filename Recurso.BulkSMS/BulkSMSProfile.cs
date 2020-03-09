@@ -50,7 +50,7 @@ namespace Recurso.BulkSMS
                 RequestFormat = DataFormat.Json
             };
 
-            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
+            IRestResponse response = await restClient.ExecuteAsync(restRequest);
 
             if (response.IsSuccessful == false)
             {
