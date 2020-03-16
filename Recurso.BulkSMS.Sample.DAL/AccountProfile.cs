@@ -10,7 +10,7 @@ namespace Recurso.BulkSMS.Sample.DAL
 {
     public class AccountProfile : IAccountProfile
     {
-        readonly IProfile _profile;
+        private readonly IProfile _profile;
         private readonly IAppSettings _appSettings;
 
         public AccountProfile(IProfile profile, IAppSettings appSettings)

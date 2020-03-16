@@ -8,6 +8,7 @@ namespace Recurso.BulkSMS
     public interface IProfile
     {
         string Password { get; set; }
+
         string Username { get; set; }
 
         Task<SMSProfile> GetProfile();

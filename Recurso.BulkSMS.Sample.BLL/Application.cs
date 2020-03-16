@@ -9,7 +9,7 @@ namespace Recurso.BulkSMS.Sample.BLL
 {
     public class Application : IApplication
     {
-        IBusinessLogic _businessLogic;
+        private readonly IBusinessLogic _businessLogic;
 
         public Application(IBusinessLogic businessLogic)
         {

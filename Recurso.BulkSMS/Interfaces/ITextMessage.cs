@@ -4,9 +4,11 @@ namespace Recurso.BulkSMS
 {
     public interface ITextMessage
     {
-        int LongMessageMaximumParts { get; set; }
-        string Password { get; set; }
         string Username { get; set; }
+
+        string Password { get; set; }
+
+        int LongMessageMaximumParts { get; set; }
 
         Task<SMSResponse> SendSMS(string phoneNumber, string message);
     }

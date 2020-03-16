@@ -1,1 +1,0 @@
-﻿Please check BulkSMS settings on the appSettings.json file.
