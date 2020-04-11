@@ -72,7 +72,14 @@ namespace Recurso.BulkSMS
 
             if (response.IsSuccessful == false)
             {
-                throw new SMSSendFailedException(response.ErrorException);
+                if (response.ErrorException == null)
+                {
+                    throw new SMSSendFailedException();
+                }
+                else
+                {
+                    throw new SMSSendFailedException(response.ErrorException);
+                }
             }
 
             return JsonConvert.DeserializeObject<SMSResponse>(response.Content);
