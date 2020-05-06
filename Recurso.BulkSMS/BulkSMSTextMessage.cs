@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Recurso.BulkSMS;
-
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Threading.Tasks;
@@ -39,7 +37,7 @@ namespace Recurso.BulkSMS
         /// <param name="phoneNumber">Phone number must be in international format</param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public async Task<SMSResponse> SendSMS(string phoneNumber, string message)
+        public async Task SendSMS(string phoneNumber, string message)
         {
             Username.CheckIfFieldIsMissing();
             Password.CheckIfFieldIsMissing();
@@ -81,8 +79,6 @@ namespace Recurso.BulkSMS
                     throw new SMSSendFailedException(response.ErrorException);
                 }
             }
-
-            return JsonConvert.DeserializeObject<SMSResponse>(response.Content);
         }
     }
 }

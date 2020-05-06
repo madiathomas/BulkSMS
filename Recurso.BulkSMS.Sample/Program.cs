@@ -20,9 +20,7 @@ namespace Recurso.BulkSMS.Sample
             string message = "This is a test message which was sent via Bulk SMS.";
 
             var bulkSMSTextMessage = new BulkSMSTextMessage(username, password);
-            SMSResponse response = await bulkSMSTextMessage.SendSMS(cellNumber, message);
-
-            Console.WriteLine($"Send Message Status: {response.Status}");
+            await bulkSMSTextMessage.SendSMS(cellNumber, message);
         }
     }
 }

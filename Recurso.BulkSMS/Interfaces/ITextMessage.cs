@@ -10,6 +10,6 @@ namespace Recurso.BulkSMS
 
         int LongMessageMaximumParts { get; set; }
 
-        Task<SMSResponse> SendSMS(string phoneNumber, string message);
+        Task SendSMS(string phoneNumber, string message);
     }
 }

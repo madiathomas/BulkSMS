@@ -1,10 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Newtonsoft.Json;
-using Recurso.BulkSMS;
-using RestSharp;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Recurso.BulkSMS.Tests
@@ -21,16 +16,6 @@ namespace Recurso.BulkSMS.Tests
         public void Setup()
         {
             bulkSMSTextMessage = new BulkSMSTextMessage("Username", "Password");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(SMSSendFailedException))]
-        public async Task BulkSMSTextMessage_SendSMS_Failed()
-        {
-            var result = await bulkSMSTextMessage.SendSMS(phoneNumber, message);
-
-            string actual = "ACCEPTED";
-            Assert.AreEqual(result.Status.StatusType, actual);
         }
 
         [TestMethod]
