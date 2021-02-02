@@ -15,13 +15,15 @@
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>recurso 400 x 400.png</PackageIcon>
     <PackageIconUrl />
-    <Version>4.0.0</Version>
-    <PackageReleaseNotes>Removed SMSResponse. It wasn't working properly</PackageReleaseNotes>
+    <Version>4.0.1</Version>
+    <PackageReleaseNotes>Updated Nuget packages</PackageReleaseNotes>
+    <AssemblyVersion>4.0.0.1</AssemblyVersion>
+    <FileVersion>4.0.1.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>
 
   <ItemGroup>
