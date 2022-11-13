@@ -15,10 +15,10 @@
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageIcon>recurso 400 x 400.png</PackageIcon>
     <PackageIconUrl />
-    <Version>4.0.2</Version>
+    <Version>4.0.3</Version>
     <PackageReleaseNotes>Updated Nuget packages</PackageReleaseNotes>
-    <AssemblyVersion>4.0.0.2</AssemblyVersion>
-    <FileVersion>4.0.0.2</FileVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <FileVersion>4.0.3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
