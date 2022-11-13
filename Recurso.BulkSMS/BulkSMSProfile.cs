@@ -43,11 +43,11 @@ namespace Recurso.BulkSMS
             var restRequest = new RestRequest
             {
                 Resource = "https://api.bulksms.com/v1/profile",
-                Method = Method.GET,
+                Method = Method.Get,
                 RequestFormat = DataFormat.Json
             };
 
-            IRestResponse response = await restClient.ExecuteAsync(restRequest);
+            var response = await restClient.ExecuteAsync(restRequest);
 
             if (response.IsSuccessful == false)
             {
