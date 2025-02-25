@@ -35,10 +35,10 @@ namespace Recurso.BulkSMS
             Username.CheckIfFieldIsMissing();
             Password.CheckIfFieldIsMissing();
 
-            var restClient = new RestClient
+            var restClient = new RestClient(new RestClientOptions
             {
                 Authenticator = new HttpBasicAuthenticator(Username, Password)
-            };
+            });
 
             var restRequest = new RestRequest
             {
