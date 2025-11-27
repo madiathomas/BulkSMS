@@ -18,6 +18,12 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage = new BulkSMSTextMessage("Username", "Password");
         }
 
+        // Pseudocode / Plan:
+        // - Replace usage of Assert.ThrowsExceptionAsync (not available) with explicit try/catch.
+        // - In each test: await the SendSMS call inside try.
+        // - If no exception is thrown, call Assert.Fail with a message.
+        // - Catch MissingFieldException and assert the caught exception is of the expected type.
+
         [TestMethod]
         public async Task BulkSMSTextMessage_SendSMS_Test_Missing_Username()
         {
@@ -25,11 +31,16 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Username = null;
             bulkSMSTextMessage.Password = "Password";
 
-            // Act
-            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(phoneNumber, message));
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
+            // Act & Assert
+            try
+            {
+                await bulkSMSTextMessage.SendSMS(phoneNumber, message);
+                Assert.Fail("Expected MissingFieldException was not thrown.");
+            }
+            catch (MissingFieldException ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(MissingFieldException));
+            }
         }
 
         [TestMethod]
@@ -39,11 +50,16 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Username = "Username";
             bulkSMSTextMessage.Password = null;
 
-            // Act
-            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(phoneNumber, message));
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
+            // Act & Assert
+            try
+            {
+                await bulkSMSTextMessage.SendSMS(phoneNumber, message);
+                Assert.Fail("Expected MissingFieldException was not thrown.");
+            }
+            catch (MissingFieldException ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(MissingFieldException));
+            }
         }
 
         [TestMethod]
@@ -53,11 +69,16 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Username = "Username";
             bulkSMSTextMessage.Password = "Password";
 
-            // Act
-            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(null, message));
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
+            // Act & Assert
+            try
+            {
+                await bulkSMSTextMessage.SendSMS(null, message);
+                Assert.Fail("Expected MissingFieldException was not thrown.");
+            }
+            catch (MissingFieldException ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(MissingFieldException));
+            }
         }
 
         [TestMethod]
@@ -67,11 +88,16 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSTextMessage.Username = "Username";
             bulkSMSTextMessage.Password = "Password";
 
-            // Act
-            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSTextMessage.SendSMS(phoneNumber, null));
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
+            // Act & Assert
+            try
+            {
+                await bulkSMSTextMessage.SendSMS(phoneNumber, null);
+                Assert.Fail("Expected MissingFieldException was not thrown.");
+            }
+            catch (MissingFieldException ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(MissingFieldException));
+            }
         }
     }
 }

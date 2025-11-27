@@ -1,10 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Newtonsoft.Json;
-using Recurso.BulkSMS;
-using RestSharp;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Recurso.BulkSMS.Tests
@@ -21,10 +16,17 @@ namespace Recurso.BulkSMS.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ProfileNotFoundException))]
         public async Task BulkSMSProfile_GetProfile_Failed()
         {
-            await bulkSMSProfile.GetProfile();
+            try
+            {
+                await bulkSMSProfile.GetProfile();
+                Assert.Fail("Expected ProfileNotFoundException was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ProfileNotFoundException));
+            }
         }
 
         [TestMethod]
@@ -34,11 +36,16 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSProfile.Username = null;
             bulkSMSProfile.Password = "Password";
 
-            // Act
-            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSProfile.GetProfile());
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
+            // Act & Assert
+            try
+            {
+                await bulkSMSProfile.GetProfile();
+                Assert.Fail("Expected MissingFieldException was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(MissingFieldException));
+            }
         }
 
         [TestMethod]
@@ -48,11 +55,16 @@ namespace Recurso.BulkSMS.Tests
             bulkSMSProfile.Username = "Username";
             bulkSMSProfile.Password = null;
 
-            // Act
-            var result = await Assert.ThrowsExceptionAsync<MissingFieldException>(async () => await bulkSMSProfile.GetProfile());
-
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(MissingFieldException));
+            // Act & Assert
+            try
+            {
+                await bulkSMSProfile.GetProfile();
+                Assert.Fail("Expected MissingFieldException was not thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(MissingFieldException));
+            }
         }
     }
 }
